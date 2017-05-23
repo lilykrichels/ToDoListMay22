@@ -15,6 +15,9 @@
             @Html.DisplayNameFor(model => model.List.ListName)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.IsDone)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.ItemName)
         </th>
         <th>
@@ -23,9 +26,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Details)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsDone)
-        </th>
+
         <th></th>
     </tr>
 
@@ -33,6 +34,11 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.List.ListName)
+        </td>
+        <td>
+
+            <a href="@Url.Action("ToggleDone", new { id = item.ItemID })">Toggle Done </a>
+            @Html.DisplayFor(modelItem => item.IsDone)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ItemName)
@@ -43,9 +49,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Details)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsDone)
-        </td>
+
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ItemID }) |
             @Html.ActionLink("Details", "Details", new { id=item.ItemID }) |

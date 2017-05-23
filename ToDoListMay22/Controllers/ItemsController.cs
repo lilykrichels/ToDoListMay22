@@ -21,6 +21,32 @@ namespace ToDoListMay22.Controllers
             return View(items.ToList());
         }
 
+        // GET: Items/Edit/>>>      creating new Action so edit an item from the index page 
+        public ActionResult ToggleDone(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Item item = db.Items.Find(id);
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+          if(item.IsDone)  
+            {
+                item.IsDone = false;
+            }
+            else
+            {
+                item.IsDone = true;
+            }
+
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
         // GET: Items/Details/5
         public ActionResult Details(int? id)
         {
